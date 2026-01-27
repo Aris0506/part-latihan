@@ -1,0 +1,9 @@
+,Date,Block_ID,Harvester,Total_Weight_kg,Rotten_Bunches
+0,2024-01-20,Blok A,Budi,1200,5
+1,2024-01-20,Blok B,Slamet,850,2
+2,2024-01-20,Blok A,Joko,1300,8
+3,2024-01-21,Blok C,Slamet,900,1
+4,2024-01-21,Blok B,Budi,1150,4
+5,2024-01-22,Blok A,Joko,1250,3
+6,2024-01-22,Blok C,Budi,980,2
+7,2024-01-22,Blok A,,1100,5

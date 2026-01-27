@@ -1,0 +1,1 @@
+this focus are Coding, Pandas, dan Manipulasi Data for data analysis

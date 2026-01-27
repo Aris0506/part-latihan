@@ -1,0 +1,1 @@
+project latihan capstone integritas PYHTON + SQL
