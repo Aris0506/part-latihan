@@ -80,3 +80,8 @@ WHERE rangking <= 3
 ORDER BY bulan DESC, rangking ASC;
 
 ```
+
+# intinya
+- Blok 1 (WITH): "Dapur Masak" (Tempat bersih-bersih data, JOIN, GROUP BY).
+- Blok 2 (Window): "Stempel Nomor" (Tempat kasih ranking/nomor urut).
+- Blok 3 (SELECT Akhir): "Penyajian" (Filter ambil yang ranking 1-3 aja).
