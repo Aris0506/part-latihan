@@ -8,30 +8,47 @@
 
 ```sql 
 /** "Kinerja Sales" (Marketing, Target, Omset Potensial) -> Pakai sale_order**/
---CTE 1 (SultanStats): Masak datanya (Totalin belanja).
+-- LANGKAH 1: Masak Data Mentah (CTE 1)
 WITH SultanStats AS (
     SELECT
-        DATE_TRUNC('month', date_order) AS bulan,
+        -- Rumus Tanggal: Ubah tanggal harian jadi tanggal awal bulan (01 Jan, 01 Feb, dst)
+        DATE_TRUNC('month', so.date_order) AS bulan,
+        
+        -- Ambil Nama Customer (bukan ID)
         rp.name AS name_customer,
+        
+        -- Totalin Omset
         SUM(so.amount_total) AS total_belanja
+
     FROM sale_order AS so
     JOIN res_partner AS rp ON so.partner_id = rp.id
-    -- FILTER PENTING ODOO: HANYA YG SUDAH DEAL
-    WHERE so.state IN ('sale', 'done') 
-    GROUP BY 1, 2 -- (Shortcut: Group by kolom ke-1 dan ke-2)
-),
--- CTE 2 (RankingProcess): Kasih nomor antrian (Ranking).
+    
+    -- FILTER WAJIB ODOO:
+    -- Hanya ambil yang sudah Confirm ('sale') atau Locked ('done')
+    -- Abaikan Quotation ('draft') dan Cancel ('cancel')
+    WHERE so.state IN ('sale', 'done')
+    
+    GROUP BY 1, 2 -- Grouping berdasarkan Bulan & Nama
+), 
+
+-- LANGKAH 2: Kasih Nomor Urut / Ranking (CTE 2)
 RankingProcess AS (
     SELECT
         bulan,
         name_customer,
         total_belanja,
+        
+        -- WINDOW FUNCTION SAKTI:
+        -- PARTITION BY bulan = Reset ranking jadi juara 1 lagi tiap ganti bulan
+        -- ORDER BY total... DESC = Yang duitnya paling gede di atas
         DENSE_RANK() OVER (PARTITION BY bulan ORDER BY total_belanja DESC) AS rangking
     FROM SultanStats
 )
+
+-- LANGKAH 3: Filter & Sajikan (Main Query)
 SELECT * FROM RankingProcess
-WHERE rangking <= 3
-ORDER BY bulan DESC, rangking ASC;
+WHERE rangking <= 3 -- Ambil cuma Top 3
+ORDER BY bulan DESC, rangking ASC; -- Urutkan dari Bulan Terbaru & Juara 1
 ```
 
 - Versi Finance (account_move): Siapa yang paling banyak setor duit (Real Paid).
