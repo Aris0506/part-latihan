@@ -1,0 +1,1 @@
+this focus Belajar sql syntax yang agak rumit (JOIN, GROUP BY, Subquery) pakai data Odoo.
