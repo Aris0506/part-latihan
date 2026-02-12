@@ -63,7 +63,7 @@ def ocr_bertahap(pdf_path, batch_size=10):
     
     # Kita proses sedikit-sedikit supaya RAM tidak penuh
     # Misal kita tes sampai halaman 476
-    total_halaman = 614 
+    total_halaman = 493 
     
     for i in range(1, total_halaman + 1, batch_size):
         start = i
@@ -99,7 +99,7 @@ def ocr_bertahap(pdf_path, batch_size=10):
 
 # Jalankan
 if __name__ == "__main__":
-    file_pdf = "Algoritma Dan Pemrograman.pdf" # Sesuaikan nama filenya
+    file_pdf = "Basis Data.pdf" # Sesuaikan nama filenya
     ocr_bertahap(file_pdf)
 
 

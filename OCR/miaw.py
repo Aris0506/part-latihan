@@ -37,5 +37,5 @@ def process_docx_cleaning(input_file):
 
 # JALANKAN
 if __name__ == "__main__":
-    file_kamu = "MSIM4302 - Analisis Dan Perancangan Sistem_LENGKAP.docx" 
+    file_kamu = "Basis Data_LENGKAP.docx" 
     process_docx_cleaning(file_kamu)
