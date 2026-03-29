@@ -1,5 +1,9 @@
-this focus are Coding, Pandas, dan Manipulasi Data for data analysis
-
+# this focus are Coding, Pandas, dan Manipulasi Data for data analysis
+1. Transforming DataFrames -> like fillna, change data type etc.
+2. Aggregating DataFrames -> like groupby(), .resample() etc.
+3. Slicing and Indexing DataFrames -> like Tolong tampilkan saham yang anjlok lebih dari 10% saja (df[df['Daily_Return'] < -0.10]), or menjadikan kolom tanggal sebagai Index (set_index).
+4. Creating and Visualizing DataFrames
+5. Combining/Merging DataFrames
 
 # Cheat Sheet Pribadi (Sesuai Materi Kita):
 
